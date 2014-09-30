@@ -4,7 +4,8 @@ class StaticPagesController < ApplicationController
 
   def help
   end
-
+  
   def acerca_de
+  	
   end
 end
