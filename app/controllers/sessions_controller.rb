@@ -18,6 +18,8 @@ def create
 end
 
 def destroy
+	salida
+	redirect_to root_url
 end
 
 

@@ -44,6 +44,22 @@ describe "UserPages" do
 			it "debe crear un usuario" do
 				expect { click_button submit }.to change(User, :count).by(1)
 			end
+
+			describe "luego de grabar al usuario" do
+				before { click_button submit }
+				let(:user) { User.find_by(email: 'user@ejemplo.com') }
+
+				it { should have_link('Salir') }
+				it { should have_title(user.name) }
+				it { should have_selector('div.alert.alert-success', text: 'Bienvenido') }
+			end
+
+			describe "luego de salir" do
+				before { click_button submit }
+				let(:user) { User.find_by(email: 'user@ejemplo.com') }
+				before { click_link "Salir" }
+				it { should have_link('Ingresa') }
+			end
 		end
 	end
 end
